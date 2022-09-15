@@ -14,9 +14,9 @@ public class LocationStats {
     private String cases;
     private String deaths;
 
-    private long totalCases;
+    private String totalCases;
 
-    private  long totalDeaths;
+    private  String totalDeaths;
 
     public LocalDate getDate () {
         return date;
@@ -75,22 +75,24 @@ public class LocationStats {
                 ", fips='" + fips + '\'' +
                 ", cases='" + cases + '\'' +
                 ", deaths='" + deaths + '\'' +
+                ", totalCases='" + totalCases + '\'' +
+                ", totalDeaths='" + totalDeaths + '\'' +
                 '}';
     }
 
-    public long getTotalCases () {
+    public String getTotalCases () {
         return totalCases;
     }
 
-    public void setTotalCases (long totalCases) {
+    public void setTotalCases (String totalCases) {
         this.totalCases = totalCases;
     }
 
-    public long getTotalDeaths () {
+    public String getTotalDeaths () {
         return totalDeaths;
     }
 
-    public void setTotalDeaths (long totalDeaths) {
+    public void setTotalDeaths (String totalDeaths) {
         this.totalDeaths = totalDeaths;
     }
 }

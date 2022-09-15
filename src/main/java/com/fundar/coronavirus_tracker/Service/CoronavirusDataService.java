@@ -3,6 +3,7 @@ package com.fundar.coronavirus_tracker.Service;
 import com.fundar.coronavirus_tracker.Entity.LocationStats;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -20,6 +21,7 @@ import java.util.List;
 public class CoronavirusDataService {
 
     public static  String CORONA_VIRUS_DATA_URL = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/live/us-counties.csv";
+
     private List<LocationStats> allLocationsats = new ArrayList<> ();
 
     public List<LocationStats> getAllLocationsats () {
@@ -38,7 +40,7 @@ public class CoronavirusDataService {
     }
 
     @PostConstruct
-//    @Scheduled(cron = "* * 1 * * * ") // Execute the First Hours of Every Day
+    @Scheduled (cron = "1 * * * * * ") // Execute the First Hours of Every Day
     public void fetchCoronaVirusData() throws IOException, InterruptedException {
 
         List<LocationStats> UpdatedStats = new ArrayList<> ();
@@ -60,7 +62,7 @@ public class CoronavirusDataService {
             locationStats.setCases (cases);
             locationStats.setDeaths (deaths);
 
-            System.out.println (locationStats);
+//            System.out.println (locationStats);
 
             UpdatedStats.add (locationStats);
 
@@ -69,7 +71,7 @@ public class CoronavirusDataService {
         this.allLocationsats = UpdatedStats;
     }
 
-    @PostConstruct
+//    @PostConstruct
     public long totalNumberOfDeaths() throws IOException, InterruptedException {
 
 //        List<String> plea = new ArrayList<> ();
